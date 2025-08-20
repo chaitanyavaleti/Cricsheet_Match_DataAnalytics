@@ -19,11 +19,11 @@ This project analyzes cricket match data (from [Cricsheet](https://cricsheet.org
 
    **Tables:**
    - `matches` → metadata (match_id, date, teams, venue, result)  
-   - `deliveries` → ball-by-ball data (match_id, batter, bowler, runs, dismissal, etc.)  
+   - `deliveries` → ball-by-ball data (match_id, batter, bowler, runs, dismissal, etc.)
 
 3. **SQL Queries**  
-   - 20 prepared queries for analysis (top run scorers, wicket takers, win rates, etc.).  
-   - File: `cricsheet_queries.sql`  
+   - 10 prepared queries for analysis (top run scorers, wicket takers, win rates, etc.).  
+   - File: `cricsheet_analysis_queries.sql`  
 
 4. **Exploratory Data Analysis (EDA)**  
    - Python (Matplotlib, Seaborn, Plotly) to check distributions and trends.  
@@ -50,13 +50,13 @@ pip install mysql-connector-python pandas matplotlib seaborn plotly requests
 
 Run ETL script:
 ```bash
-python etl_cricsheet.py
+python cricsheet_scraper.py --out ./cricsheet_jsons
 ```
 
-This populates the `matches` and `deliveries` tables.
+This populates the `innings`,`matches`, `teams` and `deliveries` tables.
 
 ### 3. SQL Queries
-Run `cricsheet_queries.sql` in MySQL Workbench or any client to explore insights.
+Run `cricsheet_analysis_queries.sql` in MySQL Workbench or any client to explore insights.
 
 ### 4. Power BI Setup
 1. Install **Power BI Desktop (x64)** (from Microsoft Download Center, not the Store).  
@@ -102,8 +102,3 @@ DIVIDE(SUM(deliveries[runs_total]) * 6, COUNTROWS(deliveries))
 ```
 
 ---
-
-## 🚀 Future Enhancements
-- Add **Bowling metrics** (dot-ball %, average, strike rate).  
-- Extend analysis to **IPL / BBL datasets**.  
-- Deploy dashboard to **Power BI Service** with scheduled refresh.  
